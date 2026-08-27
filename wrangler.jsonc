@@ -55,8 +55,8 @@
   "d1_databases": [
     {
       "binding": "D1_DATA",       // ← 请勿修改 binding 名称
-      "database_name": "",        // ← 填入你在 CF 控制台创建的 D1 数据库名称
-      "database_id": ""           // ← 填入你在 CF 控制台创建的 D1 数据库 UUID
+      "database_name": "openlist-db",        // ← 填入你在 CF 控制台创建的 D1 数据库名称
+      "database_id": "D1_DATABASE_ID_PLACEHOLDER"           // ← 填入你在 CF 控制台创建的 D1 数据库 UUID
     }
   ],
 
