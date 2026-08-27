@@ -1,11 +1,10 @@
-
 name: Deploy to Cloudflare
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # 支持在 GitHub 网页手动点击触发
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -22,10 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 核心步骤：用 GitHub Secret 替换 wrangler.jsonc 里的占位符
-      - name: Inject D1 Database ID
+      # 动态替换 D1 和 KV 的 ID
+      - name: Inject D1 and KV IDs
         run: |
           sed -i 's/D1_DATABASE_ID_PLACEHOLDER/${{ secrets.D1_DATABASE_ID }}/g' wrangler.jsonc
+          sed -i 's/KV_ID_PLACEHOLDER/${{ secrets.KV_NAMESPACE_ID }}/g' wrangler.jsonc
 
       # 执行编译与部署
       - name: Deploy to Cloudflare Workers
