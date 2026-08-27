@@ -21,11 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 动态替换 D1 和 KV 的 ID
-      - name: Inject D1 and KV IDs
+      # 动态替换 D1 ID、KV ID 和 JWT 密钥
+      - name: Inject Secrets into wrangler.jsonc
         run: |
           sed -i 's/D1_DATABASE_ID_PLACEHOLDER/${{ secrets.D1_DATABASE_ID }}/g' wrangler.jsonc
           sed -i 's/KV_ID_PLACEHOLDER/${{ secrets.KV_NAMESPACE_ID }}/g' wrangler.jsonc
+          sed -i 's/JWT_SECRET_PLACEHOLDER/${{ secrets.JWT_SECRET }}/g' wrangler.jsonc
 
       # 执行编译与部署
       - name: Deploy to Cloudflare Workers
