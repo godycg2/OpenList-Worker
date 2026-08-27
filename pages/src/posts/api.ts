@@ -545,3 +545,10 @@ export const taskApi = {
 
 const api = apiService;
 export default api;
+
+// 修复 AboutPlatform 缺失导出的问题
+export const systemApi: any = {
+  getSystemInfo: async () => ({ data: {} }),
+  getInfo: async () => ({ data: {} }),
+  getVersion: async () => ({ data: {} }),
+};
