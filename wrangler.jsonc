@@ -11,7 +11,7 @@
   "vars": {
     // ★ 必填：JWT 认证密钥（至少16位随机字符串，未配置将拒绝所有登录请求）
     // 生成示例：openssl rand -hex 32
-    "JWT_SECRET": "",
+    "JWT_SECRET": "JWT_SECRET_PLACEHOLDER",
 
     // D1 是否启用（true=使用D1/远程数据库，false=仅使用KV）
     "ENABLE_D1": true,
