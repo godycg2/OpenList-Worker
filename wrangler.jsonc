@@ -45,7 +45,7 @@
   "kv_namespaces": [
     {
       "binding": "KV_DATA",       // ← 请勿修改 binding 名称
-      "id": ""                    // ← 填入你在 CF 控制台创建的 KV 命名空间 ID
+      "id": "KV_ID_PLACEHOLDER"                    // ← 填入你在 CF 控制台创建的 KV 命名空间 ID
     }
   ],
 
