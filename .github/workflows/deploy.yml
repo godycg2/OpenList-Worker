@@ -1,1 +1,35 @@
 
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # 支持在 GitHub 网页手动点击触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      # 核心步骤：用 GitHub Secret 替换 wrangler.jsonc 里的占位符
+      - name: Inject D1 Database ID
+        run: |
+          sed -i 's/D1_DATABASE_ID_PLACEHOLDER/${{ secrets.D1_DATABASE_ID }}/g' wrangler.jsonc
+
+      # 执行编译与部署
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npm run deploy
